@@ -17,22 +17,16 @@ body {
   padding: 10px;
 }
 
-/* here*/
-
 #controls,
 #stats {
   border: 1px solid #0a0a23;
   padding: 5px;
   color: #0a0a23;
-  display: flex;
+   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-#controls
-{
- 
-}
 
 #monsterStats {
   display: none;
