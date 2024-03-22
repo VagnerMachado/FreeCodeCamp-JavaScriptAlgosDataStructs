@@ -11,6 +11,7 @@
       <h1>Calorie Counter</h1>
       <div class="container">
         <form id="calorie-counter">
+          <div id="data">
           <label for="budget">Budget</label>
           <input
             type="number"
@@ -19,6 +20,7 @@
             placeholder="Daily calorie budget"
             required
           />
+        </div>
           <fieldset id="breakfast">
             <legend>Breakfast</legend>
             <div class="input-container"></div>
@@ -51,4 +53,17 @@
               </select>
               <button type="button" id="add-entry">Add Entry</button>
             </span>
- 
+          </div>
+          <div id="buttons">
+            <button type="submit">
+              Calculate Remaining Calories
+            </button>
+            <button type="button" id="clear">Clear</button>
+          </div>
+        </form>
+        <div id="output" class="output hide"></div>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

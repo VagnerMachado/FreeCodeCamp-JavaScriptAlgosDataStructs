@@ -20,6 +20,13 @@
     text-align: center;
   }
   
+  .controls, #buttons, #data
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
   .container {
     width: 90%;
     max-width: 680px;
@@ -53,5 +60,38 @@
   select {
     min-height: 24px;
     color: var(--dark-blue);
+    width: 13rem;
+    text-align: center;
+    margin: 5px;
   }
- 
+  
+  fieldset,
+  label,
+  button,
+  input,
+  select {
+    margin-bottom: 10px;
+  }
+  
+  .output {
+    border: 2px solid var(--light-grey);
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .output span {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  .surplus {
+    color: var(--light-pink);
+  }
+  
+  .deficit {
+    color: var(--light-green);
+  }
