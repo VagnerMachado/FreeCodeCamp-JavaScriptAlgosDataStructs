@@ -58,7 +58,7 @@
   button,
   input,
   select {
-    min-height: 24px;
+    min-height: 20px;
     color: var(--dark-blue);
     width: 13rem;
     text-align: center;
