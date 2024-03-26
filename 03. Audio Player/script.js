@@ -92,9 +92,13 @@ const playSong = (id) => {
 
   if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
     audio.currentTime = 0;
+  } else {
+    audio.currentTime = userData?.songCurrentTime;
   }
+  userData.currentSong = song;
+  playButton.classList.add("playing");
 
-
+  audio.play();
 };
 
 const renderSongs = (array) => {
@@ -118,6 +122,8 @@ const renderSongs = (array) => {
 
   playlistSongs.innerHTML = songsHTML;
 };
+
+
 
 const sortSongs = () => {
   userData?.songs.sort((a,b) => {
