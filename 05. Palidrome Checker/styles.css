@@ -1,0 +1,31 @@
+body
+{
+    background-color: aliceblue;
+}
+
+hr{
+    height: 1px;
+    width: 80%;
+    background-color: black;
+}
+
+#content
+{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    width: 80%;
+    margin: auto;
+    
+}
+#text-input
+{
+    width: 20rem;
+    text-align: center;
+}
+
+#check-btn
+{
+    width: 10rem;
+    margin-bottom: 2rem;
+}
