@@ -3,7 +3,8 @@ body
     background-color: aliceblue;
 }
 
-hr{
+hr
+{
     height: 1px;
     width: 80%;
     background-color: black;
