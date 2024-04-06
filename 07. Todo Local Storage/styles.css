@@ -1,14 +1,16 @@
-:root {
+:root 
+{
     --white: #fff;
     --light-grey: #f5f6f7;
     --dark-grey: #0a0a23;
     --yellow: #f1be32;
     --golden-yellow: #feac32;
-  }
+}
   
   *,
   *::before,
-  *::after {
+  *::after
+  {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
