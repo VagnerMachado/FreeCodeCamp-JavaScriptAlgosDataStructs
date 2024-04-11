@@ -1,3 +1,6 @@
+
+//********    html references     *********//
+
 const taskForm = document.getElementById("task-form");
 const confirmCloseDialog = document.getElementById("confirm-close-dialog");
 const openTaskFormBtn = document.getElementById("open-task-form-btn");
@@ -9,9 +12,10 @@ const tasksContainer = document.getElementById("tasks-container");
 const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
-
 const taskData = JSON.parse(localStorage.getItem("data")) || [];
 let currentTask = {};
+
+//********    functions     *********//
 
 const addOrUpdateTask = () => {
   addOrUpdateTaskBtn.innerText = "Add Task";
@@ -36,7 +40,6 @@ const addOrUpdateTask = () => {
 
 const updateTaskContainer = () => {
   tasksContainer.innerHTML = "";
-
   taskData.forEach(
     ({ id, title, date, description }) => {
         (tasksContainer.innerHTML += `
@@ -52,12 +55,10 @@ const updateTaskContainer = () => {
   );
 };
 
-
 const deleteTask = (buttonEl) => {
   const dataArrIndex = taskData.findIndex(
     (item) => item.id === buttonEl.parentElement.id
   );
-
   buttonEl.parentElement.remove();
   taskData.splice(dataArrIndex, 1);
   localStorage.setItem("data", JSON.stringify(taskData));
@@ -67,15 +68,11 @@ const editTask = (buttonEl) => {
     const dataArrIndex = taskData.findIndex(
     (item) => item.id === buttonEl.parentElement.id
   );
-
   currentTask = taskData[dataArrIndex];
-
   titleInput.value = currentTask.title;
   dateInput.value = currentTask.date;
   descriptionInput.value = currentTask.description;
-
   addOrUpdateTaskBtn.innerText = "Update Task";
-
   taskForm.classList.toggle("hidden");  
 }
 
@@ -87,7 +84,11 @@ const reset = () => {
   currentTask = {};
 }
 
-if(taskData.length){updateTaskContainer()}
+//********    app and listeners      *********//
+
+if (taskData.length){
+  updateTaskContainer()
+}
 
 openTaskFormBtn.addEventListener("click", () =>
   taskForm.classList.toggle("hidden")
@@ -96,7 +97,6 @@ openTaskFormBtn.addEventListener("click", () =>
 closeTaskFormBtn.addEventListener("click", () => {
   const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
   const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description;
-
   if (formInputsContainValues && formInputValuesUpdated) {
     confirmCloseDialog.showModal();
   } else {
@@ -104,15 +104,15 @@ closeTaskFormBtn.addEventListener("click", () => {
   }
 });
 
-cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
+cancelBtn.addEventListener("click", () =>
+  confirmCloseDialog.close());
 
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
   reset()
 });
 
-taskForm.addEventListener("submit", (e) => {
+taskForm.addEventListener("submit", (e) =>{
   e.preventDefault();
-
   addOrUpdateTask();
 });
