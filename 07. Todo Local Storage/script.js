@@ -10,7 +10,7 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
-const taskData = [];
+const taskData = JSON.parse(localStorage.getItem("data")) || [];
 let currentTask = {};
 
 const addOrUpdateTask = () => {
@@ -45,7 +45,7 @@ const updateTaskContainer = () => {
           <p><strong>Date:</strong> ${date}</p>
           <p><strong>Description:</strong> ${description}</p>
           <button onclick="editTask(this)" type="button" class="btn">Edit</button>
-          <button onclick="deleteTask(this)" type="button" class="btn">Delete</button>
+          <button onclick="deleteTask(this)" type="button" class="btn">Delete</button> 
         </div>
       `)
     }
@@ -76,7 +76,7 @@ const editTask = (buttonEl) => {
 
   addOrUpdateTaskBtn.innerText = "Update Task";
 
-  taskForm.classList.toggle("hidden");
+  taskForm.classList.toggle("hidden");  
 }
 
 const reset = () => {
@@ -86,6 +86,8 @@ const reset = () => {
   taskForm.classList.toggle("hidden");
   currentTask = {};
 }
+
+if(taskData.length){updateTaskContainer()}
 
 openTaskFormBtn.addEventListener("click", () =>
   taskForm.classList.toggle("hidden")
