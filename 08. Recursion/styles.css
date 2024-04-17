@@ -45,6 +45,10 @@ h1 {
   padding: 4px;
 }
 
+#tip
+{
+  text-align: center;
+}
 .number-input {
   height: 25px;
 }
