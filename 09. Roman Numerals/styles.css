@@ -1,0 +1,81 @@
+    #content
+{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border: 3px solid gray;
+   width: 50%;
+   margin: 0 auto;
+   background-color: rgba(255,255,255,0.8);
+   border-radius: 20px;
+}
+
+h1{
+    text-align: center;
+}
+
+#convert-btn{
+    display: block;
+}
+
+label{
+    margin: 1rem;
+    max-width: 100%;
+}
+
+input{
+    text-align: center;
+    background-color: rgba(255,255,255,0.8);
+    width: 50%;
+}
+
+button
+{
+    margin-bottom: 1rem;
+    width: 25%;
+}
+
+a:visited, a{
+color: white;
+font-weight: bold;
+}
+
+#output{
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    border: 3px solid gray;
+    width: 50%;
+    height: 5rem;
+    margin: 1rem auto;
+    text-align: center;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    visibility: hidden;
+}
+
+#linkedin
+{
+margin: auto;
+text-align: center;
+color: aliceblue;
+}
+
+#lion
+{
+display: block;
+width: 60px;
+height: auto;
+margin: 0 auto;
+}
+
+html{
+    align-items: center;
+    margin: 2rem auto;
+    border-radius: 20px;
+    width: 80%;
+    /* background: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP._FBPZQA78lh_THrbwaeo1wHaEo%26pid%3DApi&f=1&ipt=2cc30c43da8a1e808a8884abebc1270b93f75786b2e4dc1c14e778d36fc86b45&ipo=images"); */
+    background: url("https://www.worldatlas.com/upload/7d/45/7e/shutterstock-98484677.jpg");
+    background-repeat: no-repeat; 
+    background-size: 100% 100%;
+}
