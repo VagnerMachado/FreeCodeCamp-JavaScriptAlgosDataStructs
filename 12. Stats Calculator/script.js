@@ -25,3 +25,5 @@ const calculate = () => {
   document.querySelector("#mean").textContent = mean;
   document.querySelector("#median").textContent = median;
 };
+
+//here is step 40, can commit on 5/2
