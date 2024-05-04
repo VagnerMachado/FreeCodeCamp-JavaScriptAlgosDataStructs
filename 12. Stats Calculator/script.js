@@ -50,3 +50,5 @@ const calculate = () => {
   document.querySelector("#mode").textContent = mode;
   document.querySelector("#range").textContent = range;
 };
+
+// all to step 47 is commited
