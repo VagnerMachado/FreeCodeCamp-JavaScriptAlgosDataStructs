@@ -36,6 +36,8 @@ const evalFormula = (x, cells) => {
     };
     return inner;
   };
+  const addCharacters = (character1) => (character2) => (num) =>
+    charRange(character1, character2);
 };
 
 window.onload = () => {
