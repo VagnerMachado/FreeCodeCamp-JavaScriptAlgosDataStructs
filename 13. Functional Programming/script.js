@@ -1,3 +1,8 @@
+const infixToFunction = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+};
+
 const isEven = (num) => num % 2 === 0;
 const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
 const average = (nums) => sum(nums) / nums.length;
@@ -39,7 +44,9 @@ const evalFormula = (x, cells) => {
       rangeFromString(num1, num2).map(addCharacters(char1)(char2))
   );
   const cellRegex = /[A-J][1-9][0-9]?/gi;
-  const cellExpanded = rangeExpanded.replace(cellRegex, (match) => {});
+  const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
+    idToText(match.toUpperCase())
+  );
 };
 
 window.onload = () => {
