@@ -12,9 +12,9 @@ const infixEval = (str, regex) =>
 
 const highPrecedence = (str) => {
   const regex = /([\d.]+)([*\/])([\d.]+)/;
-  return regex.test(str);
+  const str2 = infixEval(str, regex);
+  return str === str2 ? str : highPrecedence(str2);
 };
-console.log(highPrecedence("5*3"));
 
 const isEven = (num) => num % 2 === 0;
 const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
@@ -34,6 +34,8 @@ const spreadsheetFunctions = {
   average,
   median,
 };
+
+const applyFunction = (str) => {};
 
 const range = (start, end) =>
   Array(end - start + 1)
