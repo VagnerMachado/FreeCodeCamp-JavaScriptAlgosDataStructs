@@ -1,7 +1,7 @@
-input = document.getElementById("user-input");
-output = document.getElementById("results-div");
-check = document.getElementById("check-btn");
-clear = document.getElementById("clear-btn");
+const input = document.getElementById("user-input");
+const output = document.getElementById("results-div");
+const check = document.getElementById("check-btn");
+const clear = document.getElementById("clear-btn");
 
 const validate_input = () => {
   const inputValue = input.value;
