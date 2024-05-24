@@ -1,5 +1,64 @@
 .content {
+  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#all-content {
+  width: 20rem;
+  height: 30rem;
+  margin: 0 auto;
+  background-image: url("https://cdn1.vectorstock.com/i/1000x1000/04/80/background-with-numbers-with-copy-space-vector-23950480.jpg");
+  border-top: 1.5rem black solid;
+  border-radius: 20px;
+  border-bottom: 2rem black solid;
+  border-left: 0.75rem black solid;
+  border-right: 0.75rem black solid;
+  margin-top: 1rem;
+  z-index: 0;
+}
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+button {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 5rem;
+  background-color: burlywood;
+}
+
+input {
+  text-align: center;
+}
+
+#results-div {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#home {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: rgb(6, 6, 6);
+  border: 1px solid darkgray;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 9.75rem;
+}
+
+#camera {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgb(69, 68, 68);
+  border: 1px solid darkgray;
+  border-radius: 50%;
+  margin-bottom: -1rem;
+  margin: 0 auto;
+  z-index: 1;
+  margin-top: -1rem;
 }
