@@ -116,5 +116,18 @@ class ShoppingCart {
       totalCountPerProduct[dessert.id] =
         (totalCountPerProduct[dessert.id] || 0) + 1;
     });
+
+    const currentProductCount = totalCountPerProduct[product.id];
+    const currentProductCountSpan = document.getElementById(
+      `product-count-for-id${id}`
+    );
+
+    currentProductCount > 1
+      ? (currentProductCountSpan.textContent = `${currentProductCount}x`)
+      : (productsContainer.innerHTML += `
+      <div id="dessert${id}" class="product">
+
+      </div>
+      `);
   }
 }
