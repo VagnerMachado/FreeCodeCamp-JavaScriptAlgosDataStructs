@@ -42,6 +42,16 @@ class Player {
         this.velocity.y = gravity;
       }
       this.velocity.y += gravity;
+    } else {
+      this.velocity.y = 0;
+    }
+
+    if (this.position.x < this.width) {
+      this.position.x = this.width;
+    }
+
+    if (this.position.x >= canvas.width - 2 * this.width) {
+      this.position.x = canvas.width - 2 * this.width;
     }
   }
 }
