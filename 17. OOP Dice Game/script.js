@@ -25,8 +25,21 @@ const rollDice = () => {
     diceValuesArr.push(randomDice);
   }
 
-  listOfAllDice.forEach((dice, index) => {});
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
+  });
 };
+
+const updateStats = () => {};
+
+rollDiceBtn.addEventListener("click", () => {
+  if (rolls === 3) {
+    alert("You have made three rolls this round. Please select a score.");
+  } else {
+    rolls++;
+    rollDice();
+  }
+});
 
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
