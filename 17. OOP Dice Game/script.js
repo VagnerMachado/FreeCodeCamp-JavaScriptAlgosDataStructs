@@ -38,6 +38,25 @@ const updateStats = () => {
 const updateRadioOption = (optionNode, score) => {
   scoreInputs[optionNode].disabled = false;
   scoreInputs[optionNode].value = score;
+  scoreSpans[optionNode].textContent = `, score = ${score}`;
+};
+
+const getHighestDuplicates = (arr) => {
+  const counts = {};
+
+  for (const num of arr) {
+    if (counts[num]) {
+      counts[num]++;
+    } else {
+      counts[num] = 1;
+    }
+  }
+
+  let highestCount = 0;
+
+  for (const num of arr) {
+    const count = counts[num];
+  }
 };
 
 rollDiceBtn.addEventListener("click", () => {
