@@ -131,16 +131,47 @@ const resetGame = () => {
   resetRadioOptions();
 };
 
+const checkForStraights = (arr) => {
+  console.log("array: " + arr);
+  const four = ["1234", "2345", "3456"];
+  let hasFour = false;
+  let hasFive = false;
+  const five = ["12345", "23456"];
+  const diceValues = arr.join("");
+  five.every((val) => {
+    if (diceValues.indexOf(val) >= 0) {
+      hasFive = true;
+      updateRadioOption(4, 40);
+      console.log("found five");
+      return false;
+    }
+    return true;
+  });
+
+  four.every((val) => {
+    if (diceValues.indexOf(val) >= 0) {
+      hasFour = true;
+      updateRadioOption(3, 30);
+      console.log("found four");
+      return false;
+    }
+    return true;
+  });
+  if (hasFive === false && hasFour === false) {
+    console.log("not four nor five");
+    updateRadioOption(5, 0);
+  }
+};
+
 rollDiceBtn.addEventListener("click", () => {
-  if (rolls === 3) {
-    alert("You have made three rolls this round. Please select a score.");
-  } else {
+  {
     rolls++;
     resetRadioOptions();
     rollDice();
     updateStats();
     getHighestDuplicates(diceValuesArr);
     detectFullHouse(diceValuesArr);
+    checkForStraights(diceValuesArr);
   }
 });
 
