@@ -132,12 +132,14 @@ const resetGame = () => {
 };
 
 const checkForStraights = (arr) => {
-  console.log("array: " + arr);
+  const sortedNumbersArr = arr.sort((a, b) => a - b);
+  const uniqueNumbersArr = [...new Set(sortedNumbersArr)];
+  const diceValues = uniqueNumbersArr.join("");
+
   const four = ["1234", "2345", "3456"];
   let hasFour = false;
   let hasFive = false;
   const five = ["12345", "23456"];
-  const diceValues = arr.join("");
   five.every((val) => {
     if (diceValues.indexOf(val) >= 0) {
       hasFive = true;
