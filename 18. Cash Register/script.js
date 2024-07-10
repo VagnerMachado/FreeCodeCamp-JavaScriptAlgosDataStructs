@@ -35,7 +35,7 @@ const calculateChange = () => {
   } else if (cashInRegister == changeDue) {
     status.textContent = "Status: CLOSED";
     console.log("Change is equal to cash in register");
-  } else if (makeChange() >= 0) {
+  } else if (makeChange(changeDue) >= 0) {
     status.textContent = "Status: OPEN";
     console.log("Change can be made");
   } else {
@@ -44,9 +44,34 @@ const calculateChange = () => {
   }
 };
 
-const makeChange = () => {
+const makeChange = (changeDue) => {
   let arrayPosition = 8;
-  let done = false;
+  let partialChange = 0;
+  while (arrayPosition >= 0) {
+    while (
+      cid[arrayPosition][1] != 0 &&
+      partialChange + values[arrayPosition] <= changeDue
+    ) {
+      console.log(
+        "Current Value of cid at " +
+          values[arrayPosition] +
+          " is " +
+          cid[arrayPosition][1]
+      );
+      console.log("Adding that to partial change");
+      partialChange += values[arrayPosition];
+      cid[arrayPosition][1] -= values[arrayPosition];
+    }
+    console.log("Change due " + changeDue);
+    console.log("Partial Change " + parseFloat(partialChange).toFixed(2));
+    console.log("Done adding " + values[arrayPosition]);
+    if (parseFloat(partialChange).toFixed(2) == changeDue) {
+      return partialChange;
+    }
+    arrayPosition--;
+  }
+  console.log("return -1 from make change");
+  return -1;
 };
 const getCashInRegister = () => {
   let total = 0.0;
