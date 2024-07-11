@@ -1,4 +1,4 @@
-let price = 1.87;
+let price = 3.26;
 let cid = [
   ["PENNY", 1.01],
   ["NICKEL", 2.05],
@@ -11,7 +11,14 @@ let cid = [
   ["ONE HUNDRED", 100],
 ];
 
-const values = [0.01, 0.05, 0.1, 0.25, 1.0, 5.0, 10.0, 20.0, 100.0];
+let values = [0.01, 0.05, 0.1, 0.25, 1.0, 5.0, 10.0, 20.0, 100.0];
+values = values.map((val) => Math.ceil(val * 100.0));
+
+let cidCopy = cid.map((item) => [item[0], Math.ceil(item[1] * 100.0)]);
+
+console.log("values" + values);
+console.log("copyCid" + cidCopy);
+
 const cashInput = document.getElementById("cash");
 const changeOutput = document.getElementById("change-due");
 const purchaseButton = document.getElementById("purchase-btn");
@@ -42,6 +49,7 @@ const calculateChange = () => {
     status.textContent = "Status: INSUFFICIENT_FUNDS";
     console.log("Cannot make change");
   }
+  console.log("CID: " + cidCopy);
 };
 
 const makeChange = (changeDue) => {
@@ -49,23 +57,24 @@ const makeChange = (changeDue) => {
   let partialChange = 0;
   while (arrayPosition >= 0) {
     while (
-      cid[arrayPosition][1] != 0 &&
+      cidCopy[arrayPosition][1] != 0 &&
       partialChange + values[arrayPosition] <= changeDue
     ) {
       console.log(
         "Current Value of cid at " +
           values[arrayPosition] +
           " is " +
-          cid[arrayPosition][1]
+          cidCopy[arrayPosition][1]
       );
       console.log("Adding that to partial change");
       partialChange += values[arrayPosition];
-      cid[arrayPosition][1] -= values[arrayPosition];
+      cidCopy[arrayPosition][1] -= values[arrayPosition];
     }
     console.log("Change due " + changeDue);
-    console.log("Partial Change " + parseFloat(partialChange).toFixed(2));
+    console.log("Partial Change " + partialChange);
     console.log("Done adding " + values[arrayPosition]);
-    if (parseFloat(partialChange).toFixed(2) == changeDue) {
+    if (partialChange == changeDue) {
+      console.log("change was made");
       return partialChange;
     }
     arrayPosition--;
@@ -73,12 +82,13 @@ const makeChange = (changeDue) => {
   console.log("return -1 from make change");
   return -1;
 };
+
 const getCashInRegister = () => {
   let total = 0.0;
-  for (let v of cid) {
-    total += parseFloat(v[1]);
+  for (let v of cidCopy) {
+    total += v[1];
   }
-  return total.toFixed(2);
+  return total;
 };
 
 purchaseButton.addEventListener("click", calculateChange);
