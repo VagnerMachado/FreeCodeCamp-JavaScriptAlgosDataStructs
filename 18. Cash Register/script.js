@@ -1,6 +1,6 @@
 let price = 3.26;
 let cid = [
-  ["PENNY", 1.01],
+  ["PENNY", 0.02],
   ["NICKEL", 2.05],
   ["DIME", 3.1],
   ["QUARTER", 4.25],
@@ -11,6 +11,7 @@ let cid = [
   ["ONE HUNDRED", 100],
 ];
 
+price = price * 100;
 let values = [0.01, 0.05, 0.1, 0.25, 1.0, 5.0, 10.0, 20.0, 100.0];
 values = values.map((val) => Math.ceil(val * 100.0));
 
@@ -19,22 +20,20 @@ let cidCopy = cid.map((item) => [item[0], Math.ceil(item[1] * 100.0)]);
 console.log("values" + values);
 console.log("copyCid" + cidCopy);
 
-const cashInput = document.getElementById("cash");
+let cashInput = document.getElementById("cash");
 const changeOutput = document.getElementById("change-due");
 const purchaseButton = document.getElementById("purchase-btn");
 const status = document.getElementById("status");
 
 const calculateChange = () => {
   const cashInRegister = getCashInRegister();
-  const changeDue = parseFloat(
-    parseFloat(cashInput.value) - parseFloat(price)
-  ).toFixed(2);
+  const changeDue = cashInput.value * 100 - price;
   console.log("-----------------------------");
   console.log("Button was clicked");
-  console.log("Cash Input: " + parseFloat(cashInput.value));
+  console.log("Cash Input: " + cashInput.value);
   console.log("Cash in Register: " + getCashInRegister());
   console.log("Change due: " + changeDue);
-  changeOutput.textContent = "CHANGE " + changeDue;
+  changeOutput.textContent = "CHANGE " + (changeDue / 100).toFixed(2);
 
   if (cashInRegister < changeDue) {
     status.textContent = "Status: INSUFFICIENT_FUNDS";
