@@ -1,6 +1,6 @@
 let price = 3.26;
 let cid = [
-  ["PENNY", 0.02],
+  ["PENNY", 1.02],
   ["NICKEL", 2.05],
   ["DIME", 3.1],
   ["QUARTER", 4.25],
@@ -17,8 +17,9 @@ values = values.map((val) => Math.ceil(val * 100.0));
 
 let cidCopy = cid.map((item) => [item[0], Math.ceil(item[1] * 100.0)]);
 
-console.log("values" + values);
-console.log("copyCid" + cidCopy);
+console.log("values: " + values);
+console.log("cid: " + cid);
+console.log("copyCid: " + cidCopy);
 
 let cashInput = document.getElementById("cash");
 const changeOutput = document.getElementById("change-due");
@@ -30,12 +31,15 @@ const calculateChange = () => {
   const changeDue = cashInput.value * 100 - price;
   console.log("-----------------------------");
   console.log("Button was clicked");
-  console.log("Cash Input: " + cashInput.value);
+  console.log("Cash Input: " + cashInput.value * 100);
   console.log("Cash in Register: " + getCashInRegister());
   console.log("Change due: " + changeDue);
-  changeOutput.textContent = "CHANGE " + (changeDue / 100).toFixed(2);
+  changeOutput.textContent = (changeDue / 100).toFixed(2);
 
-  if (cashInRegister < changeDue) {
+  if (price === cashInput.value * 100) {
+    changeOutput.textContent =
+      '"No change due - customer paid with exact cash"';
+  } else if (cashInRegister < changeDue) {
     status.textContent = "Status: INSUFFICIENT_FUNDS";
     console.log("Not enough cash in register");
   } else if (cashInRegister == changeDue) {
@@ -44,11 +48,21 @@ const calculateChange = () => {
   } else if (makeChange(changeDue) >= 0) {
     status.textContent = "Status: OPEN";
     console.log("Change can be made");
+    // assign cidCopy to cid
+    cid = [...cidCopy];
+    cid = cid.map((v, index) => {
+      console.log("INDEX: " + index);
+      return [
+        v[0],
+        index <= 3 ? (v[1] / 100).toFixed(2) : Math.trunc(v[1] / 100),
+      ];
+    });
+    console.log("CID after change made: " + cid);
   } else {
     status.textContent = "Status: INSUFFICIENT_FUNDS";
     console.log("Cannot make change");
   }
-  console.log("CID: " + cidCopy);
+  console.log("CID: " + cid);
 };
 
 const makeChange = (changeDue) => {
