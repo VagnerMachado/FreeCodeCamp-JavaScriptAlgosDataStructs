@@ -1,6 +1,8 @@
+// --------------------   references ------------------------
+
 let price = 3.26;
 let cid = [
-  ["PENNY", 1.02],
+  ["PENNY", 1.01],
   ["NICKEL", 2.05],
   ["DIME", 3.1],
   ["QUARTER", 4.25],
@@ -14,17 +16,37 @@ let cid = [
 price = price * 100;
 let values = [0.01, 0.05, 0.1, 0.25, 1.0, 5.0, 10.0, 20.0, 100.0];
 values = values.map((val) => Math.ceil(val * 100.0));
-
 let cidCopy = cid.map((item) => [item[0], Math.ceil(item[1] * 100.0)]);
-
 console.log("values: " + values);
 console.log("cid: " + cid);
 console.log("copyCid: " + cidCopy);
-
+const register = document.getElementById("register");
 let cashInput = document.getElementById("cash");
 const changeOutput = document.getElementById("change-due");
 const purchaseButton = document.getElementById("purchase-btn");
-const status = document.getElementById("status");
+const changeStatus = document.getElementById("status");
+
+// -------------------------------------------------------
+
+const getCashInRegister = () => {
+  let total = 0.0;
+  for (let v of cidCopy) {
+    total += v[1];
+  }
+  return total;
+};
+
+// -------------------------------------------------------
+
+const printRegister = () => {
+  let res = "";
+  for (let v of cid.reverse()) {
+    if (v[1] != 0) res += v[0] + ": $" + v[1] + " ";
+  }
+  return res;
+};
+
+// -------------------------------------------------------
 
 const calculateChange = () => {
   const cashInRegister = getCashInRegister();
@@ -34,19 +56,18 @@ const calculateChange = () => {
   console.log("Cash Input: " + cashInput.value * 100);
   console.log("Cash in Register: " + getCashInRegister());
   console.log("Change due: " + changeDue);
-  changeOutput.textContent = (changeDue / 100).toFixed(2);
 
-  if (price === cashInput.value * 100) {
-    changeOutput.textContent =
-      '"No change due - customer paid with exact cash"';
+  if (changeDue == 0) {
+    changeOutput.textContent = "No change due - customer paid with exact cash";
+  } else if (changeDue < 0) {
+    alert("Customer does not have enough money to purchase the item");
   } else if (cashInRegister < changeDue) {
-    status.textContent = "Status: INSUFFICIENT_FUNDS";
+    changeStatus.textContent = "Status: INSUFFICIENT_FUNDS";
     console.log("Not enough cash in register");
   } else if (cashInRegister == changeDue) {
-    status.textContent = "Status: CLOSED";
+    changeStatus.textContent = "Status: CLOSED" + printRegister();
     console.log("Change is equal to cash in register");
   } else if (makeChange(changeDue) >= 0) {
-    status.textContent = "Status: OPEN";
     console.log("Change can be made");
     // assign cidCopy to cid
     cid = [...cidCopy];
@@ -58,27 +79,32 @@ const calculateChange = () => {
       ];
     });
     console.log("CID after change made: " + cid);
+    changeStatus.textContent = "Status: OPEN " + printRegister();
   } else {
-    status.textContent = "Status: INSUFFICIENT_FUNDS";
+    changeStatus.textContent = "Status: INSUFFICIENT_FUNDS";
     console.log("Cannot make change");
   }
   console.log("CID: " + cid);
 };
 
+// -------------------------------------------------------
 const makeChange = (changeDue) => {
   let arrayPosition = 8;
   let partialChange = 0;
+  let changeGiven = "";
   while (arrayPosition >= 0) {
     while (
       cidCopy[arrayPosition][1] != 0 &&
       partialChange + values[arrayPosition] <= changeDue
     ) {
+      let fromDrawer = 0;
       console.log(
         "Current Value of cid at " +
           values[arrayPosition] +
           " is " +
           cidCopy[arrayPosition][1]
       );
+      fromDrawer += values[arrayPosition];
       console.log("Adding that to partial change");
       partialChange += values[arrayPosition];
       cidCopy[arrayPosition][1] -= values[arrayPosition];
@@ -96,14 +122,9 @@ const makeChange = (changeDue) => {
   return -1;
 };
 
-const getCashInRegister = () => {
-  let total = 0.0;
-  for (let v of cidCopy) {
-    total += v[1];
-  }
-  return total;
-};
-
 purchaseButton.addEventListener("click", calculateChange);
+register.innerHTML = cid.map((v) => `${v} <br>`);
 
 //ready to commit  need to do for 7/5
+
+// Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04"
