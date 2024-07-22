@@ -77,7 +77,7 @@ const calculateChange = () => {
     cashInput.value = "";
     console.log("Not enough cash in register");
   } else if (cashInRegister == changeAmount) {
-    changeDue.textContent = "Status: CLOSED " + printRegister();
+    changeDue.textContent = "Status: CLOSED" + printRegister();
     console.log("#Status: CLOSED " + printRegister() + "#");
     cashInput.value = "";
     console.log("Change is equal to cash in register");
