@@ -8,12 +8,18 @@ let authorDataArr = [];
 fetch("https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json")
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
+    authorDataArr = data;
   })
   .catch((err) => {
     console.error(`There was an error: ${err}`);
   });
 
 const displayAuthors = (authors) => {
-  authors.forEach();
+  authors.forEach(({ author, image, url, bio }, index) => {
+    authorContainer.innerHTML += `
+    <div id="${index}" class="user-card">
+      <h2 class="author-name">${author}</h2>
+    </div>
+  `;
+  });
 };
