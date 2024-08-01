@@ -21,5 +21,32 @@ fetchData();
 const showLatestPosts = (data) => {
   const { topic_list, users } = data;
   const { topics } = topic_list;
-  postsContainer.innerHTML = topics.map((item) => {});
+
+  postsContainer.innerHTML = topics
+    .map((item) => {
+      const {
+        id,
+        title,
+        views,
+        posts_count,
+        slug,
+        posters,
+        category_id,
+        bumped_at,
+      } = item;
+
+      return `
+    <tr>
+      <td>
+        <p class="post-title">${title}</p>
+      </td>
+      <td></td>
+      <td>
+      
+      </td>
+      <td></td>
+      <td></td>
+    </tr>`;
+    })
+    .join("");
 };
