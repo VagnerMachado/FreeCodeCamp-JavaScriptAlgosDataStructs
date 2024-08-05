@@ -22,7 +22,16 @@ const forumCategory = (id) => {
 
   if (allCategories.hasOwnProperty(id)) {
     const { className, category } = allCategories[id];
+
+    selectedCategory.className = className;
+    selectedCategory.category = category;
+  } else {
+    selectedCategory.className = "general";
+    selectedCategory.category = "General";
+    selectedCategory.id = 1;
   }
+  const url = `${forumCategoryUrl}${selectedCategory.className}/${id}`;
+  const linkText = selectedCategory.category;
 };
 
 const timeAgo = (time) => {
@@ -75,8 +84,16 @@ const showLatestPosts = (data) => {
 
   postsContainer.innerHTML = topics
     .map((item) => {
-      const { id, title, views, posts_count, slug, posters, _id, bumped_at } =
-        item;
+      const {
+        id,
+        title,
+        views,
+        posts_count,
+        slug,
+        posters,
+        category_id,
+        bumped_at,
+      } = item;
 
       return `
     <tr>
