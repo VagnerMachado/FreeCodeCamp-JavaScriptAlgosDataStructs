@@ -22,7 +22,21 @@ const forumCategory = (id) => {
 
   if (allCategories.hasOwnProperty(id)) {
     const { className, category } = allCategories[id];
+
+    selectedCategory.className = className;
+    selectedCategory.category = category;
+  } else {
+    selectedCategory.className = "general";
+    selectedCategory.category = "General";
+    selectedCategory.id = 1;
   }
+  const url = `${forumCategoryUrl}${selectedCategory.className}/${id}`;
+  const linkText = selectedCategory.category;
+  const linkClass = `category ${selectedCategory.className}`;
+
+  return `<a href="${url}" class="${linkClass}" target="_blank">
+    ${linkText}
+  </a>`;
 };
 
 const timeAgo = (time) => {
@@ -57,6 +71,8 @@ const viewCount = (views) => {
   return views;
 };
 
+const avatars = (posters, users) => {};
+
 const fetchData = async () => {
   try {
     const res = await fetch(forumLatest);
@@ -75,13 +91,22 @@ const showLatestPosts = (data) => {
 
   postsContainer.innerHTML = topics
     .map((item) => {
-      const { id, title, views, posts_count, slug, posters, _id, bumped_at } =
-        item;
+      const {
+        id,
+        title,
+        views,
+        posts_count,
+        slug,
+        posters,
+        category_id,
+        bumped_at,
+      } = item;
 
       return `
     <tr>
       <td>
         <p class="post-title">${title}</p>
+        ${forumCategory(category_id)}
       </td>
       <td></td>
       <td>${posts_count - 1}</td>
