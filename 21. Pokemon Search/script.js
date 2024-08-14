@@ -29,6 +29,21 @@ document.getElementById("search-button").addEventListener("click", function () {
         "special-defense"
       ).innerText = `${data.stats[4].base_stat}`;
       document.getElementById("speed").innerText = `${data.stats[5].base_stat}`;
+
+      const typesElement = document.getElementById("types");
+      typesElement.innerHTML = "";
+      data.types.forEach((typeInfo) => {
+        const typeElement = document.createElement("p");
+        typeElement.innerText = typeInfo.type.name.toUpperCase();
+        typesElement.appendChild(typeElement);
+      });
+
+      const spriteContainer = document.getElementById("sprite-container");
+      spriteContainer.innerHTML = "";
+      const sprite = document.createElement("img");
+      sprite.id = "sprite";
+      sprite.src = data.sprites.front_default;
+      spriteContainer.appendChild(sprite);
     })
     .catch((error) => {
       alert(error.message);
